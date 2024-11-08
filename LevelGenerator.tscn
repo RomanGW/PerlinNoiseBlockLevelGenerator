@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://LevelGenerator.gd" type="Script" id=1]
+[ext_resource path="res://CameraController.gd" type="Script" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[node name="LevelGenerator" type="Spatial"]
+script = ExtResource( 1 )
+perlin_noise = SubResource( 2 )
+
+[node name="BlockRoot" type="Spatial" parent="."]
+
+[node name="CameraController" type="Spatial" parent="."]
+script = ExtResource( 2 )
+
+[node name="SpringArm" type="SpringArm" parent="CameraController"]
+transform = Transform( 0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0 )
+spring_length = 20.0
+
+[node name="Camera" type="Camera" parent="CameraController/SpringArm"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
